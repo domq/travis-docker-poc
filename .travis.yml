@@ -29,7 +29,10 @@ install:
   - sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
   # Don't fail the Travis run in case some depots are off-line:
   - sudo apt-get update || true
+  - sudo mv /sbin/start /sbin/start.ORIG
+  - sudo cp /bin/true /sbin/start
   - sudo apt-get install lxc lxc-docker aufs-tools cgroup-lite
+  - sudo /sbin/start.ORIG lxc-docker
   
 script:
   - /bin/true

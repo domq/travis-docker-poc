@@ -31,9 +31,9 @@ install:
   - sudo apt-get update || true
   - sudo cp /bin/true /sbin/start
   - sudo apt-get install strace lxc lxc-docker aufs-tools cgroup-lite
-  - docker -b none -d &
+  - sudo docker -b none -d &
   - sleep 5
-  - docker pull epflsti/blueboxnoc-tests
+  - sudo docker pull epflsti/blueboxnoc-tests
 
 script:
-  - docker run -v "$PWD":/opt/blueboxnoc epflsti/blueboxnoc-tests /bin/true
+  - sudo docker run -v "$PWD":/opt/blueboxnoc epflsti/blueboxnoc-tests /bin/true

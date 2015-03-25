@@ -31,7 +31,7 @@ install:
   - sudo apt-get update || true
   - sudo cp /bin/true /sbin/start
   - sudo apt-get install strace lxc lxc-docker aufs-tools cgroup-lite
-  - sudo strace -f -F -s 2000 docker -d
+  - sudo strace -f -F -s 2000 docker -b none
 
 script:
   - /bin/true

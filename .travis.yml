@@ -31,11 +31,11 @@ install:
   - sudo apt-get update || true
   - sudo cp /bin/true /sbin/start
   - sudo apt-get install strace lxc lxc-docker aufs-tools cgroup-lite
-  - sudo chmod a+rx /var /var/lib /var/lib/docker /var/lib/docker/init
-  - sudo chmod a+rx /var/lib/docker/init/dockerinit-*
   - sudo docker -b none -d &
   - sleep 5
   - while ! sudo docker pull epflsti/blueboxnoc-tests; do sleep 30; done
+  - sudo chmod a+rx /var /var/lib /var/lib/docker /var/lib/docker/init
+  - sudo chmod a+rx /var/lib/docker/init/dockerinit-*
 
 script:
   - sudo docker run -v "$PWD":/opt/blueboxnoc epflsti/blueboxnoc-tests /bin/true

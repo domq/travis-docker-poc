@@ -34,10 +34,9 @@ install:
   - sudo docker -b none -d &
   - sleep 5
   - while ! sudo docker pull epflsti/blueboxnoc-tests; do sleep 30; done
-  - cat /proc/cpuinfo
-  - ls -lR /boot
-  - sudo chmod a+rx /var /var/lib /var/lib/docker /var/lib/docker/init
-  - sudo chmod a+rx /var/lib/docker/init/dockerinit-*
 
 script:
+  - sudo chmod a+rx /var /var/lib /var/lib/docker /var/lib/docker/init
+  - sudo chmod a+rx /var/lib/docker/init/dockerinit-*
+  - sudo strace -f -F -p $(pidof docker) -s 2000 &
   - sudo docker run -v "$PWD":/opt/blueboxnoc epflsti/blueboxnoc-tests /bin/true

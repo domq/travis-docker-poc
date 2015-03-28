@@ -38,5 +38,5 @@ install:
 script:
   - sudo chmod a+rx /var /var/lib /var/lib/docker /var/lib/docker/init
   - sudo chmod a+rx /var/lib/docker/init/dockerinit-*
-  - sudo strace -f -F -p $(pidof docker) -s 2000 &
+  - sudo strace -f -F -p $(pidof docker) -s 200 &
   - sudo docker run -v "$PWD":/opt/blueboxnoc epflsti/blueboxnoc-tests /bin/true

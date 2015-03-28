@@ -24,3 +24,17 @@ modules. Attempting to `ioctl(SIOCBRADDBR)` fails with `ENOPKG`
 
 `docker -b none` seems to have worked for very low values of working.
 Guess we need to try `docker -d -b none`?
+
+### Build 11: "fork/exec /var/lib/docker/init/dockerinit-1.5.0: operation not permitted"
+
+    [pid  5851] clone(child_stack=0, flags=CLONE_NEWNS|0x6c000000|SIGCHLD) = -1 EPERM (Operation not permitted)
+
+Cannot `CLONE_NEWNS` hmm? The idea of commit 00752fb0142555 was to
+make do without private networking (as apparently the Travis kernel
+doesn't support that), but if private namespaces are not available
+then the whole idea of running Docker sort of falls apart.
+
+Which brings us back to [lukecyca's solution](https://github.com/lukecyca/travis-docker-example) as the only viable option...
+
+We'll keep this Git repository for the benefit of future
+archeologists. Thanks for reading.
